@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <%- include('./head') %>
+    </head>
+    
+    <body class="web-body">
+    
+        <!-- Header -->
+        <%- include('./header')  %> 
+        <!-- Header Ends -->
+    
+        <!-- Sidebar -->
+        <%- include('./leftnav')  %> 
+        
+        <!-- Sidebar Ends -->
+    
+        <!-- Content Cards -->
+    <section class="app-content active" id="app-content">
+        <div class="container-fluid">
+            <div class="inner-page-search">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 col-md-12">
+                        <div class="chapterheading">
+                            <h2>Genesis 1 (1 to 31)</h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-12">
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-7 col-sm-12">
+                                <div class="searchbar">
+                                    <input type="search" placeholder="Search “Genesis”" class="form-control">
+                                    <button type="button" class="search-btn">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-xs-12">
+                                <div class="inner-info-link">
+                                    <a href="#">
+                                        <i class="fas fa-language"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="fas fa-book-reader"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="fas fa-retweet"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="fas fa-download"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="chapter-detail">
+                <% data.forEach(function(row){ %>
+                <p>
+                    <b><%= row.book %> </b>
+                    <p><%= row.content %> </p>
+                    <a href="#">. [Ref <%= row.verse %> ]</a>
+                </p>
+                <% }); %>  
+            </div>
+        </div>
+
+    </section>
+    <!-- Content Cards Ends -->
+
+    <!-- Option jQuery and Bootstrap Bundle (or includes Popper) -->
+    <%- include('./bottom')  %> 
+
+</body>
+</html>
