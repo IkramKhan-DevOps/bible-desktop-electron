@@ -1,0 +1,19 @@
+
+NODE::
+---------
+
+"main": "app.js",
+  "scripts": {
+    "dev": "nodemon ./app.js",
+    "start": "node ./app.js"
+  },
+
+ELECTRON::
+----------
+
+"main": "main.js",
+  "scripts": {
+    "dev": "nodemon ./main.js",
+    "watch": "nodemon --exec electron .",
+    "start": "electron main.js"
+  },

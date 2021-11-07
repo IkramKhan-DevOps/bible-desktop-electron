@@ -26,8 +26,8 @@
                         <h1 class="main-title">The Holy Bible </h1>
                     </div>
                     <div class="searchbar">
-                        <input type="search" placeholder="Search “Genesis”" class="form-control">
-                        <button type="button" class="search-btn">
+                        <input type="search" placeholder="Search “Genesis”" class="form-control" id="search-val">
+                        <button type="button" class="search-btn" id="search-btn">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
@@ -129,3 +129,11 @@
 
 </body>
 </html>
+<script>
+    document.getElementById("search-btn").addEventListener("click", function() {
+        let value = document.getElementById("search-val").value;
+        if(value!=null|value!=''){
+            location.href = "/page?search="+value;
+        }
+    });
+</script>

@@ -1,45 +1,62 @@
 const express = require('express');
-const app = express();
 const path = require('path');
-const router = express.Router();
-var sqlite3 = require('sqlite3').verbose()
+const bodyParser = require('body-parser');
 
+const db = require('./database')
+const router = require('./routers/bible');
+const mainRouter = express.Router();
 
-router.get('/', (req,res) => {
-    let db = new sqlite3.Database('db.db')
-    db.all("SELECT * FROM bible LIMIT 10", function (err, data, fields) {
-        res.render('index', {
-            "data": data
-        });
+const app = express();
+
+mainRouter.get('/', (req,res) => {
+    res.render('index')
+});
+
+mainRouter.get('/page', (req,res) => {
+
+    const search_q = req.query.search
+    const book_q = req.query.book
+    const chapter_q = req.query.chapter
+    console.log(search_q)
+    
+    const sql_query = "SELECT * from bible WHERE book='"+book_q+"' OR chapter='"+chapter_q+"' OR content LIKE '%"+search_q+"%'"
+    db.all(sql_query, function (err, data, fields) {
+        res.render('innerpage', {'data': data})
     });
+    
 });
 
 
-router.get('/page', (req,res) => {
-    let db = new sqlite3.Database('db.db')
-    db.all("SELECT * FROM bible LIMIT 10", function (err, data, fields) {
-        res.render('innerpage', {
-            "data": data
-        });
-    });
+mainRouter.get('/lang', (req,res) => {
+    res.render('lang')
 });
 
 
-router.get('/lang', (req,res) => {
-    res.render('lang');
-});
-
-
-router.get('/quotes', (req,res) => {
+mainRouter.get('/quotes', (req,res) => {
     res.render('quotes');
 });
 
 
-app.use('/', router);
-app.set('view engine', 'ejs');
+app.use(bodyParser.json());
+app.use('', mainRouter);
+app.use('', router);
+
 app.use(express.static('public'))
 app.use(express.static('files'))
 
+app.set('view engine', 'ejs');
 
 app.listen(process.env.port || 3000);
 console.log('Web Server is listening at port '+ (process.env.port || 3000));
+
+/*
+
+    -----------------------
+    ::::: APPLICATION :::::
+    -----------------------
+
+    1 : 
+    2 : 
+    3 : 
+
+*/

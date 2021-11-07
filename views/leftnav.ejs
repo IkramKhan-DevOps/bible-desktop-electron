@@ -1,0 +1,22 @@
+<aside class="sidebar">
+    <div class="sidebar-head">
+        <h4>Menu</h4>
+        <span class="close-sidebar sidebar-opner">
+            <i class="fas fa-times"></i>
+        </span>
+    </div>
+    <ul class="sidebar-list" id="book">
+         
+    </ul>
+    <script>
+        $(document).ready(function(){
+            $.get("/api/book/", function(data, status){
+                data.forEach(element => {
+                    $('#book').append(`
+                    <li><a href="/page?book=${element.book}">${element.book}</a></li>
+                    `)
+                });
+            });
+        });
+    </script>
+</aside>
